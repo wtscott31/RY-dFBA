@@ -3,13 +3,13 @@ RY-dFBA
 
 RY-dFBA (Robust Yeast dynamic Flux Balance Analysis) includes the MATLAB files used for simulations in the following publication:
 
-Benjamín J. Sánchez, José R. Pérez-Correa, Eduardo Agosin (2014). Construction of robust dynamic genome-scale metabolic model structures of Saccharomyces cerevisiae through iterative re-parameterization. Metabolic Engineering 25:159–173. (doi:10.1016/j.ymben.2014.07.004)
+_Benjamín J. Sánchez, José R. Pérez-Correa, Eduardo Agosin (2014). Construction of robust dynamic genome-scale metabolic model structures of Saccharomyces cerevisiae through iterative re-parameterization. Metabolic Engineering 25:159–173._ (doi:10.1016/j.ymben.2014.07.004)
 
 RY-dFBA is intended for a better understanding of the mathematical procedure detailed in the publication, and for eventual replication of the results and/or modification for other dFBA problems. However, it is not intended as a general platform for dFBA modeling, and therefore the authors cannot guarantee that it will work for any given genome scale model and/or experimental conditions. Also, all scripts should be checked and appropiately changed if other conditions should be tested.
 
 RY-dFBA was programmed by Benjamín J. Sánchez (@BenjaSanchez), excluding the functions identifica, ksensibilidadBSB and intconfianzaBSB, that were programmed by Dr. Claudio Gelmi (www.systemsbiology.cl), Engineering School, Pontificia Universidad Católica de Chile.
 
-Last update: 2014-11-29
+Last update: 2014-12-01
 
 ========================
 
@@ -25,7 +25,7 @@ Last update: 2014-11-29
 
 ### Recommended Software:
 
-* Gurobi 5.0 or higher (http://www.gurobi.com/) set as optimizer in COBRA, otherwise the QP problems could take excesive computational time. Gurobi is free of charge for academic users.
+* Gurobi 5.0 or higher (http://www.gurobi.com/) set as optimizer in COBRA, otherwise the QP problems could take excesive computational time. Gurobi offers academic licenses free of charge.
 * The Parallel Computing Toolbox for MATLAB, for accelerating computations (use parpool at the beginning of RY_dFBA.m)
 
 ========================
@@ -39,11 +39,11 @@ In order to correctly perform the procedure shown in the publication, the follow
 * **STEP 2:** Run convertData.m in the /data folder. If everything went ok, files called "d[i].mat" should appear in the /data folder, with all the model data and experimental information.
 
 * **STEP 3:** Run RY_dFBA in the main folder, for each of the datasets, using "RY_dFBA(i)", with i being the corresponding dataset (the sheet number in the Excel file). Once it finishes (could be up to a day in some cases), the following files should appear in the main folder:
-    * it_results_d[i]_pre.mat: All of the results of the first parameter estimation and pre/post regression analysis.
-    * it_d[i].mat: All results from the reparametrization.
-    * cmp_d[i].mat: All the CC's of each solution of the iterative tree with no sensitivity or identifiability problems.
-    * it_results_d[i]_post.mat: All of the results of the last parameter estimation and pre/post regression analysis.
-    * fitting_d[i].fig: A MATLAB figure displaying the fit of the final model to the experimental results.
+    * _it_results_d[i]_pre.mat_: All of the results of the first parameter estimation and pre/post regression analysis.
+    * _it_d[i].mat_: All results from the reparametrization.
+    * _cmp_d[i].mat_: All the CC's of each solution of the iterative tree with no sensitivity or identifiability problems.
+    * _it_results_d[i]_post.mat_: All of the results of the last parameter estimation and pre/post regression analysis.
+    * _fitting_d[i].fig_: A MATLAB figure displaying the fit of the final model to the experimental results.
 
 ========================
 
