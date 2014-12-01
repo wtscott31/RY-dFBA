@@ -46,7 +46,3 @@ In order to correctly perform the procedure shown in the publication, the follow
     * _fitting_d[i].fig_: A MATLAB figure displaying the fit of the final model to the experimental results.
 
 ========================
-
-## Licensing:
-
-RY-dFBA is available for free (for academic or non commercial purposes only) at https://github.com/BenjaSanchez/RY-dFBA
