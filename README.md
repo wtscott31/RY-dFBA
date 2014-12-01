@@ -39,11 +39,11 @@ In order to correctly perform the procedure shown in the publication, the follow
 * **STEP 2:** Run convertData.m in the /data folder. If everything went ok, files called "d[i].mat" should appear in the /data folder, with all the model data and experimental information.
 
 * **STEP 3:** Run RY_dFBA in the main folder, for each of the datasets, using "RY_dFBA(i)", with i being the corresponding dataset (the sheet number in the Excel file). Once it finishes (could be up to a day in some cases), the following files should appear in the main folder:
-** it_results_d[i]_pre.mat: All of the results of the first parameter estimation and pre/post regression analysis.
-** it_d[i].mat: All results from the reparametrization.
-** cmp_d[i].mat: All the CC's of each solution of the iterative tree with no sensitivity or identifiability problems.
-** it_results_d[i]_post.mat: All of the results of the last parameter estimation and pre/post regression analysis.
-** fitting_d[i].fig: A MATLAB figure displaying the fit of the final model to the experimental results.
+    * it_results_d[i]_pre.mat: All of the results of the first parameter estimation and pre/post regression analysis.
+    * it_d[i].mat: All results from the reparametrization.
+    * cmp_d[i].mat: All the CC's of each solution of the iterative tree with no sensitivity or identifiability problems.
+    * it_results_d[i]_post.mat: All of the results of the last parameter estimation and pre/post regression analysis.
+    * fitting_d[i].fig: A MATLAB figure displaying the fit of the final model to the experimental results.
 
 ========================
 
