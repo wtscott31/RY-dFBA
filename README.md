@@ -3,7 +3,7 @@ RY-dFBA
 
 RY-dFBA (Robust Yeast dynamic Flux Balance Analysis) includes the MATLAB files used for simulations in the following publication:
 
-_Benjamín J. Sánchez, José R. Pérez-Correa, Eduardo Agosin (2014). Construction of robust dynamic genome-scale metabolic model structures of Saccharomyces cerevisiae through iterative re-parameterization. Metabolic Engineering 25:159–173._ (doi:10.1016/j.ymben.2014.07.004)
+_Benjamín J. Sánchez, José R. Pérez-Correa, Eduardo Agosin (2014). Construction of robust dynamic genome-scale metabolic model structures of Saccharomyces cerevisiae through iterative re-parameterization. Metabolic Engineering 25:159–173._ (http://www.dx.doi.org/10.1016/j.ymben.2014.07.004)
 
 RY-dFBA is intended for a better understanding of the mathematical procedure detailed in the publication, and for eventual replication of the results and/or modification for other dFBA problems. However, it is not intended as a general platform for dFBA modeling, and therefore the authors cannot guarantee that it will work for any given genome scale model and/or experimental conditions. Also, all scripts should be checked and appropiately changed if other conditions should be tested.
 
