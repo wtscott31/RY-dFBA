@@ -9,7 +9,7 @@
 % OUTPUT:
 % model         Modified COBRA model
 %
-% Benjamín J. Sánchez
+% BenjamÃ­n J. SÃ¡nchez
 % Last Update: 2014-11-23
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -39,7 +39,10 @@ if ~isAerobic
 end
 
 %Add ATP maintenance reaction:
-[model,~] = addReaction(model,'ATP_maintenance',{'s_0434'},-1,false,0,1000);
+%           ATP  +  H2O  ->  ADP  +   H+   +  PO4
+mets  = {'s_0434','s_0803','s_0394','s_0794','s_1322'};
+coefs = [-1,-1,1,1,1];
+[model,~] = addReaction(model,'NGAM',mets,coefs,false,0,1000);
 
 end
 
