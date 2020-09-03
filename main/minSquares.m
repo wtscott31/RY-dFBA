@@ -1,12 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % [J,g,R] = minSquares(k,texp,yexp)
-% Integrates the dynamic model and calculates afterwards the cuadratic 
+% Integrates the dynamic model and calculates afterwards the quadratic 
 % difference between the model predictions and the experimental data.
-% Returns the cuadratic difference (objective function). To be used in the
+% Returns the quadratic difference (objective function). To be used in the
 % parameter estimation with SSm.
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-28
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [J,g,R] = minSquares(k,texp,yexp)
@@ -14,7 +17,7 @@ function [J,g,R] = minSquares(k,texp,yexp)
 %Integrate:
 x0         = evalin('base','x0');
 weights    = evalin('base','weights');
-odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',0.7,'NonNegative',1:length(x0));
+odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',7,'NonNegative',1:length(x0));
 try
     if feedFunction(20) == 0
         %Batch fermentation, works faster with ode113
@@ -23,7 +26,7 @@ try
         %Fed-Batch fermentation, works faster with ode15s
         [~,xmod] = ode15s(@pseudoSteadyState,texp,x0,odeoptions,k);
     end
-    ymod = xmod(:,2:7);
+    ymod = xmod(:,2:11);
 
 catch exception
     ymod = 1e3*ones(size(yexp));
@@ -35,13 +38,13 @@ clear pseudoSteadyState
 %Define optimization function (difference between experimental and model data, normalized by maximum measure):
 [mmod,nmod] = size(ymod);
 [mexp,nexp] = size(yexp);
-if mmod == mexp && nmod == nexp && sum(abs(ymod(1,:)-ymod(nmod,:))) ~= 0
+if mmod == mexp && nmod == nexp && sum(abs(ymod(1,:)-ymod(mmod,:))) ~= 0
     R = ymod-yexp;
 else
     R = 1e3*ones(size(yexp));
 end
 
-for i = 1:6
+for i = 1:10
     R(:,i) = R(:,i)./(max(yexp(:,i))*weights(i));
 end
 

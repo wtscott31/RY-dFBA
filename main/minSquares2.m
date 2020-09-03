@@ -5,6 +5,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-25
+%
+% William T. Scott, Jr.
+% Last Update: 2019-11-22
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function ymod = minSquares2(k,texp)
@@ -13,7 +16,7 @@ function ymod = minSquares2(k,texp)
 x0         = evalin('base','x0');
 yexp       = evalin('base','ydata');
 weights    = evalin('base','weights');
-odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',0.7,'NonNegative',1:length(x0));
+odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',7,'NonNegative',1:length(x0));
 try
     if feedFunction(20)==0
         %Batch fermentation, works faster with ode113
@@ -22,7 +25,7 @@ try
         %Fed-Batch fermentation, works faster with ode15s
         [~,xmod] = ode15s(@pseudoSteadyState,texp,x0,odeoptions,k);
     end
-    ymod = xmod(:,2:7);
+    ymod = xmod(:,2:11);
 
 catch exception
     ymod = 1e3*ones(size(yexp));
@@ -32,7 +35,7 @@ end
 clear pseudoSteadyState
 
 %Return simulation output, appropiately weighted:
-for i = 1:6
+for i = 1:10
     ymod(:,i) = ymod(:,i)./(max(yexp(:,i))*weights(i));
 end
 

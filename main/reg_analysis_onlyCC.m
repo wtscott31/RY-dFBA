@@ -12,6 +12,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-29
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function CC = reg_analysis_onlyCC(fixed_values,kfixed)
@@ -41,7 +44,7 @@ texp(NaN_rows,:) = [];
 yexp(NaN_rows,:) = [];
 
 %Normalize data with maximum measures:
-for i = 1:6
+for i = 1:10
     yexp(:,i) = yexp(:,i)./(max(yexp(:,i))*weights(i));
 end
 

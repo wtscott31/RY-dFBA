@@ -4,7 +4,7 @@
 % parameters.
 %
 % INPUTS:
-% dataset       Number indicating wich sheet will be analyzed
+% dataset       Number indicating which sheet will be analyzed
 % k             Parameter values
 %
 % OUTPUTS:
@@ -15,6 +15,10 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-25
+%
+% William T. Scott, Jr.
+% Last Update: 2019-11-22
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [t,x] = run_dFBA(dataset,k)
@@ -24,7 +28,7 @@ initCobraToolbox
 
 %Exp data:
 cd data
-load(['d' num2str(dataset) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','trans','weights');
+load(['d' num2str(dataset) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','weights');
 cd ..
 
 [t,~]   = size(expdata);
@@ -39,11 +43,12 @@ assignin('base','feed',feed)
 assignin('base','PM',PM)
 assignin('base','Vout',expdata(:,1:2))
 assignin('base','dataset',dataset)
-assignin('base','trans',trans)
+%assignin('base','trans',trans)
 assignin('base','skip_delays',false)
 assignin('base','kfixed',kfixed)
-assignin('base','t_limit',100)
+assignin('base','t_limit',410)
 assignin('base','expdata',expdata)
+
 
 %Integrate
 odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',0.7,'NonNegative',1:length(x0));

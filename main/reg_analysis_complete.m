@@ -6,6 +6,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-23
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [AICc,CI,CC,Mc,Ms,diff] = reg_analysis(k)
@@ -34,7 +37,7 @@ yexp(NaN_rows,:) = [];
 simTime = texp(length(texp));
 
 %Normalize data with maximum measures:
-for i = 1:6
+for i = 1:10
     yexp(:,i) = yexp(:,i)./(max(yexp(:,i))*weights(i));
 end
 
@@ -80,11 +83,11 @@ end
 
 %Identifiability analysis:
 x0 = evalin('base','x0');
-Mc = identificaBSB(1:7,k,x0,[0 simTime],@pseudoSteadyState,0.95,1);
+Mc = identificaBSB(1:11,k,x0,[0 simTime],@pseudoSteadyState,0.95,1);
 
 %Sensitivity analysis:
 close all
-ksensibilidadBSB(1:7,k,x0,[0 simTime],@pseudoSteadyState,3,1);
+ksensibilidadBSB(1:11,k,x0,[0 simTime],@pseudoSteadyState,3,1);
 Ms = load('GraficoBarra.txt');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -15,6 +15,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-28
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function FBAsol = solveFBA(model,t,excRxn,p)
@@ -23,7 +26,7 @@ function FBAsol = solveFBA(model,t,excRxn,p)
 if feedFunction(t) == 0
     f = p(4);   %Fraction of optimum growth that cell follows - BATCH[-]
 else
-    f = p(15);  %Fraction of optimum growth that cell follows - FEDBATCH [-]
+    f = p(19);  %Fraction of optimum growth that cell follows - FEDBATCH [-]
 end
 
 %Maximize Biomass
@@ -57,7 +60,11 @@ end
 %Returns the QP solution:
 FBAsol   = FBAsol_X;
 FBAsol.x = FBAsol_min.full;
-
+%checkExchange(model,FBAsol.x)
+%printFluxVector(model,FBAsol.x,true,true)
+%fluxfile = fopen('fluxes.txt','w');
+%fprintf(fluxfile,'%6i',FBAsol.x);
+%fclose(fluxfile);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

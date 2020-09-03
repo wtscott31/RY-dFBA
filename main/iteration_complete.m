@@ -13,6 +13,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-29
+%
+% William T. Scott, Jr.
+% Last Update: 2019-11-22
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function it_results = iteration_complete(dataset,kfixed)
@@ -26,7 +29,7 @@ initCobraToolbox
 
 %Define initial variables and constraints
 cd data
-load(['d' num2str(dataset) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','trans','weights');
+load(['d' num2str(dataset) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','weights');
 cd ..
     
 assignin('base','model',model);
@@ -37,24 +40,24 @@ assignin('base','PM',PM);
 assignin('base','feed',feed);
 assignin('base','Vout',expdata(:,1:2));
 assignin('base','dataset',dataset);
-assignin('base','trans',trans);
+%assignin('base','trans',trans);
 assignin('base','skip_delays',true);
 
 %========================= PROBLEM SPECIFICATIONS=========================
 
 problem.f = 'minSquares';  %Objective function (.m file)
 
-%     vmax  Kg     Ke     f    a    c    l    vATP  t  perc  pEtOH  pGlyc  pCyt   pLac
-kL = [1     0.005  0.005  0.1  0.5  0.5  0.5  0     0  75    0      0      0      0];
-k0 = [10    0.05   20     0.7  1    1    1    0     6  100   1.7    0      0      0];
-kU = [50    10     50     1    3    3    3    5     6  100   2      1      0.258  1];
-
+%     vmax  Kg    Ke     f    a    c    l    RNA   DNA   vnmax   Kn     Kf   pEtOH pGlyc  pCit   pMal  pSucc pAcet 
+kL = [1     0.005  0.005  1    0    0    0    0     0     0.05   0.005  0.1  0     0      0      0     0     0  ];
+k0 = [10    0.05   25     1    0.01 0.01 0.01 0.01  0.01  0.2    0.01   20   1.7   0      0      0     0     0  ];
+kU = [50    20     50     1    1    1    1    1     1     5      10     60   3.5   1      0.5    1     1     0.5];
+ 
 %Include f2 and other yields if dataset is aerobic
-if sum(ismember([1:3,5,7,9,10,12],dataset)) == 1
-    %           f2   vEtOH2  vGlyc2  vCyt2  vLac2
-    kL = [kL    0.1  -10     -10     0      0  ];
-    k0 = [k0    1    0       0       0      0  ];
-    kU = [kU    1    10      0       10     10 ];
+if sum(ismember([1,5],dataset)) == 1
+    %           f2   vEtOH2  
+    kL = [kL    0.1  -10 ];    
+    k0 = [k0    1    0   ];   
+    kU = [kU    1    10  ]; 
 end
 
 %Decide the parameters to be estimated depending on kfixed:
@@ -80,8 +83,8 @@ opts.local.finish = 'lsqnonlin';
 %========================== DATA EXPERIMENTAL ============================
 
 texp    = expdata(:,1);
-ydata   = expdata(:,3:8);
-weights = weights(:,3:8);
+ydata   = expdata(:,3:12);
+weights = weights(:,3:12);
 assignin('base','texp',texp);
 assignin('base','ydata',ydata);
 assignin('base','weights',weights);
@@ -97,7 +100,7 @@ t1      = toc(time1);
 
 k_SS       = results.xbest;
 simTime    = texp(length(texp));
-odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',0.7,'NonNegative',1:length(x0));
+odeoptions = odeset('RelTol',1e-3,'AbsTol',1e-3,'MaxStep',7,'NonNegative',1:length(x0));
 
 time2 = tic;
 if feedFunction(20)==0

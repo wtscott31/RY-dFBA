@@ -10,6 +10,9 @@
 %
 % Benjamín J. Sánchez
 % Last update: 2014-11-23
+%
+% William T. Scott, Jr.
+% Last Update: 2018-07-12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function convertData(modelName,dataName)
@@ -21,16 +24,16 @@ initCobraToolbox
 i            = 1;
 data_missing = 1;
 while data_missing
-    try
+  % try
         %Read model
         model = readCbModel(modelName);
         %Read dataset and save it in 
-        [model,excMet,excRxn,x0,feed,PM,expdata,trans,weights] = readData(model,dataName,i);
-        save(['d' num2str(i) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','trans','weights');
+        [model,excMet,excRxn,x0,feed,PM,expdata,weights] = readData(model,dataName,i);
+        save(['d' num2str(i) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','weights');
         i = i+1;
-    catch
-        data_missing = 0;
-    end
+ %  catch
+ %      data_missing = 0;
+ %   end
 end
 
 end

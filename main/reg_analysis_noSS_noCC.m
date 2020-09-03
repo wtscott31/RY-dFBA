@@ -5,6 +5,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-24
+%
+% William T. Scott, Jr.
+% Last Update: 2018-07-12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [Mc,Ms] = reg_analysis_noSS_noCC

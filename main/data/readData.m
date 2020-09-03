@@ -24,9 +24,12 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-23
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [model,excMet,excRxn,x0,feed,PM,expdata,trans,weights] = readData(model,dataName,dataset)
+function [model,excMet,excRxn,x0,feed,PM,expdata,weights] = readData(model,dataName,dataset)
 
 %Read excel file:
 [~,expName]     = xlsread(dataName,dataset,'A1');           %Experiment Name
@@ -36,7 +39,7 @@ PM              = xlsread(dataName,dataset,'D2:D50')./1000; %Molecular weights [
 initLB          = xlsread(dataName,dataset,'F2:F50');       %Initial lower bound
 initUB          = xlsread(dataName,dataset,'G2:G50');       %Initial upper bound
 feed            = xlsread(dataName,dataset,'H2:H50');       %Feed for each variable [L/h] or [g/L]
-expdata         = xlsread(dataName,dataset,'K2:R100');      %Experimental Data
+expdata         = xlsread(dataName,dataset,'K2:V100');      %Experimental Data
 
 %Define weigths for optimization functions according to number of
 %measurments:
@@ -78,9 +81,9 @@ end
 model = modelModifications(model,isAerobic);
 
 %Read transcriptomic data
-[~,trans.names]  = xlsread(tdata,1,'A1:A6000');
-[trans.values,~] = xlsread(tdata,1,'B1:BB6000');
-trans            = preprocess_tdata(trans,model);
+%[~,trans.names]  = xlsread(tdata,1,'A1:A6000');
+%[trans.values,~] = xlsread(tdata,1,'B1:BB6000');
+%trans            = preprocess_tdata(trans,model);
 
 end
 

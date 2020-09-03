@@ -13,6 +13,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-23
+%
+% William T. Scott, Jr.
+% Last Update: 2018-07-12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function dx = pseudoSteadyState(t,x,k)
@@ -48,6 +51,7 @@ if numel(FBAsol.x) == 0
     FBAsol.x = zeros(length(model.rxns),1);
 end
 
+
 %Integration:
 N  = length(excMet);
 dx = zeros(N,1);
@@ -71,7 +75,7 @@ end
 
 skip_delays = evalin('base','skip_delays');
 persistent odetime
-maxtime = 300;
+maxtime = 1200;
 
 if skip_delays
     if isempty(odetime)

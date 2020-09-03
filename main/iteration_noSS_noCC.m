@@ -14,6 +14,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-24
+%
+% William T. Scott, Jr.
+% Last Update: 2018-07-12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function it_results = iteration_noSS_noCC(fixed_values,kfixed)

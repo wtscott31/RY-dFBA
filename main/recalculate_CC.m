@@ -13,6 +13,9 @@
 %
 % Benjamín J. Sánchez
 % Last update: 2014-11-29
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function cmp_group = recalculate_CC(dataset)
@@ -31,11 +34,11 @@ initCobraToolbox
 
 %Define initial variables and constraints
 cd data
-data = load(['d' num2str(dataset) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','trans','weights');
+data = load(['d' num2str(dataset) '.mat'],'model','excMet','excRxn','x0','feed','PM','expdata','weights');
 cd ..
 texp    = data.expdata(:,1);
-ydata   = data.expdata(:,3:8);
-weights = data.weights(:,3:8);
+ydata   = data.expdata(:,3:12);
+weights = data.weights(:,3:12);
 assignin('base','texp',texp);
 assignin('base','ydata',ydata);
 assignin('base','weights',weights);
@@ -47,7 +50,7 @@ assignin('base','feed',data.feed);
 assignin('base','PM',data.PM);
 assignin('base','Vout',data.expdata(:,1:2));
 assignin('base','dataset',dataset);
-assignin('base','trans',data.trans);
+%assignin('base','trans',data.trans);
 assignin('base','skip_delays',false);
 
 for i = 1:m

@@ -10,6 +10,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-23
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function F = feedFunction(t)
@@ -26,10 +29,10 @@ elseif d == 2       %12-12-12 A
     a  = 0.0011;
     b  = 0.0806;
     
-elseif d == 3       %12-12-17 A
-    ti = 13.33333;
-    a  = 0.0011;
-    b  = 0.0743;
+%elseif d == 3       %12-12-17 A
+  %  ti = 13.33333;
+  %  a  = 0.0011;
+  %  b  = 0.0743;
     
 elseif d == 5       %13-01-02 B
     ti = 12.86667;
@@ -57,7 +60,7 @@ elseif d == 12      %13-01-28 B
     b  = 0.0664;
     
 else                %Any anaerobic batch
-    ti = 100;
+    ti = 410;
     
 end
 

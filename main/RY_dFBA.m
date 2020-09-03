@@ -8,6 +8,9 @@
 %
 % Benjamín J. Sánchez
 % Last Update: 2014-11-29
+%
+% William T. Scott, Jr.
+% Last Update: 2019-01-02
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function RY_dFBA(dataset)
@@ -16,13 +19,12 @@ function RY_dFBA(dataset)
 %    no parameters fixed. If everything goes ok, a file called
 %    "it_results_d[i]_pre.mat" should appear in the main folder, with all
 %    results from the iteration.
-if sum(ismember([1 2 3 5 7 9 10 12],dataset))
-    K = 19;
+if sum(ismember([1,5],dataset))
+    K = 20;
 else
-    K = 14;
+    K = 18;
 end
 iteration_complete(dataset,NaN(1,K));
-
 %(2) Perform the reparametrization procedure, generating all possible
 %    solutions with no sensitivity/identifiability problems. If everything
 %    goes ok, a file called "it_d[i].mat" should appear in the main folder,
